@@ -12,6 +12,9 @@ const port = process.env.PORT || 4000;
 // Store the DB_HOST value as a variable
 const DB_HOST = process.env.DB_HOST;
 
+// Import our Database models into our Apollo Server Express app code
+const models = require('./models');
+
 // Note Objects
 let notes = [
   { id: '1', content: 'This is a note', author: 'Adam Scott' },
@@ -41,7 +44,9 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     hello: () => 'hello world!',
-    notes: () => notes,
+    notes: async () => {
+        return await models.Note.find();
+    },
     note: (parent, args) => {
       return notes.find(note => note.id === args.id);
     }
