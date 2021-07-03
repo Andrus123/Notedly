@@ -6,14 +6,13 @@ const { ApolloServer, gql } = require('apollo-server-express');
 //Importing the .env config and the db.js file
 require('dotenv').config();
 const db = require('./db');
+// Import our Database models into our Apollo Server Express app code
+const models = require('./models');
 
 // Run the server on a port specified in our .env file or port 4000
 const port = process.env.PORT || 4000;
 // Store the DB_HOST value as a variable
 const DB_HOST = process.env.DB_HOST;
-
-// Import our Database models into our Apollo Server Express app code
-const models = require('./models');
 
 // Note Objects
 let notes = [
@@ -47,8 +46,8 @@ const resolvers = {
     notes: async () => {
         return await models.Note.find();
     },
-    note: (parent, args) => {
-      return notes.find(note => note.id === args.id);
+    note: async (parent, args) => {
+      return await models.Note.findById(args.id);
     }
   },
   Mutation: {
