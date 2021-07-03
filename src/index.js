@@ -52,7 +52,6 @@ const resolvers = {
         }
     }
 };
-
 const app = express();
 
 // Apollo Server setup
