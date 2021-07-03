@@ -52,14 +52,11 @@ const resolvers = {
     }
   },
   Mutation: {
-    newNote: (parent, args) => {
-      let noteValue = {
-        id: String(notes.length + 1),
+    newNote: async (parent, args) => {
+      return await models.Note.create({
         content: args.content,
         author: 'Adam Scott'
-      };
-      notes.push(noteValue);
-      return noteValue;
+      });
     }
   }
 };
