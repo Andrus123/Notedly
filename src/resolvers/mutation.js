@@ -22,11 +22,11 @@ module.exports = {
       },
       {
         $set: {
-            content
+          content
         }
       },
       {
-          new: true
+        new: true
       }
     );
   },
