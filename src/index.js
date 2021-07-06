@@ -2,6 +2,8 @@
 // This is the main entry point of our application
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+//User Authentication
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 // Local module imports
@@ -10,8 +12,6 @@ const models = require('./models');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 
-//User Authentication
-const jwt = require('jsonwebtoken');
 
 // Run the server on a port specified in our .env file or port 4000
 const port = process.env.PORT || 4000;
