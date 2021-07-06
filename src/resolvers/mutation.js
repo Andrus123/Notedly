@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 const {
   AuthenticationError,
   ForbiddenError
@@ -9,10 +10,16 @@ require('dotenv').config();
 const gravatar = require('../util/gravatar');
 
 module.exports = {
-  newNote: async (parent, args, { models }) => {
+  // add the users context
+  newNote: async (parent, args, { models, user }) => {
+    // if there is no user on the context, throw an authentication error
+    if (!user) {
+      throw new AuthenticationError('You must be signed in to create a note');
+    }
     return await models.Note.create({
       content: args.content,
-      author: 'Adam Scott'
+      // reference the author's mongo id
+      author: mongoose.Types.ObjectId(user.id)
     });
   },
   updateNote: async (parent, { content, id }, { models }) => {
