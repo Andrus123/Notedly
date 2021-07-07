@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
 const {
   AuthenticationError,
   ForbiddenError
 } = require('apollo-server-express');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
 const gravatar = require('../util/gravatar');
@@ -16,6 +16,7 @@ module.exports = {
     if (!user) {
       throw new AuthenticationError('You must be signed in to create a note');
     }
+    
     return await models.Note.create({
       content: args.content,
       // reference the author's mongo id

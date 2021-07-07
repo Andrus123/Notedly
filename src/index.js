@@ -11,7 +11,7 @@ const db = require('./db');
 const models = require('./models');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
-const { Token } = require('graphql');
+
 
 // Run the server on a port specified in our .env file or port 4000
 const port = process.env.PORT || 4000;
@@ -48,7 +48,7 @@ const server = new ApolloServer({
     // for now, lets' log the user to the console
     console.log(user);
     //Add the db models to the context
-    return { models };
+    return { models, user };
   }
 });
 
