@@ -1,5 +1,6 @@
 // index.js
 // This is the main entry point of our application
+const helmet = require('helmet');
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 //User Authentication
@@ -20,6 +21,7 @@ const DB_HOST = process.env.DB_HOST;
 
 const app = express();
 
+app.use(helmet());
 // Connect to the database
 db.connect(DB_HOST);
 
