@@ -23,7 +23,7 @@
   "author": "Adam Scott",
   "license": "MIT",
   "dependencies": {
-    "apollo-server-express": "2.4.0",
+    "apollo-server-express": "^3.0.0",
     "bcrypt": "^5.0.1",
     "cors": "2.8.5",
     "dotenv": "6.1.0",
@@ -37,8 +37,8 @@
     "jsonwebtoken": "8.5.1",
     "marked": "0.7.0",
     "md5": "2.2.1",
-    "mongoose": "5.7.13",
-    "nodemon": "1.18.7",
+    "mongoose": "^5.13.2",
+    "nodemon": "^2.0.10",
     "passport": "0.4.0",
     "passport-github2": "0.1.11"
   },
@@ -47,7 +47,7 @@
     "eslint-config-prettier": "4.0.0",
     "eslint-plugin-prettier": "3.0.1",
     "faker": "4.1.0",
-    "node-fetch": "2.5.0",
+    "node-fetch": "^2.6.1",
     "prettier": "1.18.2"
   }
 }
