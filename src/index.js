@@ -22,10 +22,7 @@ const port = process.env.PORT || 4000;
 // Store the DB_HOST value as a variable
 const DB_HOST = process.env.DB_HOST;
 
-const app = express();
 
-app.use(helmet());
-app.use(cors());
 // Connect to the database
 db.connect(DB_HOST);
 
@@ -44,6 +41,9 @@ const getUser = token => {
 
 // Apollo Server setup
 async function startApolloServer() {
+  const app = express();
+      app.use(helmet());
+      app.use(cors());
   const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -68,5 +68,6 @@ await new Promise(resolve => app.listen({ port }, resolve));
 console.log(
   `GraphQL Server running at http://localhost:${port}${server.graphqlPath}`
 );
+return { server, app };
 }
 startApolloServer();
