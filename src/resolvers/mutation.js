@@ -20,7 +20,8 @@ module.exports = {
     return await models.Note.create({
       content: args.content,
       // reference the author's mongo id
-      author: mongoose.Types.ObjectId(user.id)
+      author: mongoose.Types.ObjectId(user.id),
+      favoriteCount: 0
     });
   },
   updateNote: async (parent, { content, id }, { models, user }) => {
